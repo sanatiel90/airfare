@@ -28,7 +28,7 @@ $result_pesquisa = $manager->busca_voo($cid_origem,$cid_destino,$data_voo);
   	 
   	 <div class="col-lg-8 ">
   	   <div class="navbar-header"  href="#">
-  	  		<a  class="navbar-brand " href="index.php"  >
+  	  		<a  class="navbar-brand " href="index.html"  >
   	  		 
   	  	   Projeto AirFare 
   	  		</a>  
