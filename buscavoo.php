@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once('model/class/Manager.class.php');
 
 $manager = new Manager();
@@ -17,12 +17,12 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 			<header class="row navbar navbar-default cabecalho">
 				<div class="col-lg-8">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.html">Projeto AirFare</a>
+						<a class="navbar-brand" href="index.php">Projeto AirFare</a>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="navbar-header">
-                        <p class="navbar-text"></p>
+                        <p class="navbar-text"><?php include_once 'view/navbar.php'; ?></p>
                     </div>
 				</div>
 			</header>
@@ -30,9 +30,12 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 				<div class="col-lg-3">
 					<div class="panel panel-success">
 						<div class="panel-heading">
-							<h3 class="panel-title text-center"><strong>Menu</strong></h3>
+							<h3 class="panel-title text-center"><strong>Refine sua busca</strong></h3>
 						</div>
-						<div class="panel-body"></div>
+						<div class="panel-body">
+							
+
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-9" >
@@ -90,7 +93,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                                 <div class="text-center" style="float:left; width:14%;"><?php echo $key['companhia'] ?></div>
                                 <div class="text-center" style="float:left; width:6%;"><?php echo $key['vagas_disponiveis'] ?></div>
                                 <div class="text-center" style="float:left; width:12%;">R$ <?php echo $key['preco'] ?>,00</div>
-                                <div class="text-center" style="float:left; width:16%;"><a href="#" class="btn btn-sm btn-success">Comprar</a></div>
+                                <div class="text-center" style="float:left; width:16%;"><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-success">Comprar</a></div>
                             </div>
                         </div>
                         <?php } ?>
