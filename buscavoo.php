@@ -50,7 +50,8 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 						</div>
 					</div>
 					<div class="panel-body">
-                        <?php foreach ($search_result as $key) { ?>
+                      <?php if($search_result != null){ 
+                         foreach ($search_result as $key) { ?>
                         <div style="background-color:white; height:250px;">
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:left"><strong>SAÍDA</strong></div>
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:right"><strong>DESTINO</strong></div>
@@ -96,7 +97,16 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                                 <div class="text-center" style="float:left; width:16%;"><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-success">Comprar</a></div>
                             </div>
                         </div>
-                        <?php } ?>
+                         <?php }/*fim foreach*/   }else{  ?>
+
+                            <h4 class="text-center">
+                               <strong> Não foram encontrados vôos para a pesquisa solicitada</strong>
+                               <br><br><br>
+                               <strong><a class="btn btn-primary" href="index.php">Realizar nova pesquisa</a></strong>
+                            </h4>
+
+                          <?php  } ?>  
+
 					</div>
 				</div>
 			</section>
