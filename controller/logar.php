@@ -10,7 +10,7 @@ $user = $manager->login_cliente($_POST['email'],$_POST['password']);
 
 
 if($user == false){
-	header("location: http://localhost/projeto_airfare/login.php?error=user_not_found");
+	header("location: http://localhost/projeto_airfare/login.php?invalid_login");
 
 }else{
 

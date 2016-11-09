@@ -41,7 +41,7 @@
                             <input type="email" name="" placeholder="Informe o seu e-mail" class="form-control" required /><br>
 
                              <label for="">*Senha:</label>
-                            <input id="" type="password" name="" placeholder="Informe uma senha de acesso"  class="form-control" style="width:250px" required/><br>
+                            <input id="" type="password" name="" placeholder="Informe uma senha de acesso"  class="form-control" style="width:250px" required /><br>
 
                             <label for="">*CPF:</label>
                             <input id="" type="text" name="" placeholder="Informe o seu cpf"  class="form-control" style="width:250px" required/><br>

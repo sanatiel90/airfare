@@ -35,6 +35,15 @@
                 --> 
                <div class="col-lg-4"></div>
                 <div class="col-lg-4" >
+
+                <?php if(isset($_GET['logout'])){ ?>
+
+                    <div class="alert alert-success text-center" >
+                         <strong>Você foi desconectado do sistema com sucesso</strong>
+                    </div>
+
+                <?php } ?>
+
                     <div class="panel panel-success" >
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
@@ -52,7 +61,7 @@
                             <label for="data-voo">Data da saída:</label>
                             <input id="data-voo" type="date" name="data_voo" class="form-control" style="width:170px" required/><br>
 
-                            <button class="btn btn-success">Pesquisar</button>
+                            <button class="btn btn-success form-control">Pesquisar</button>
                         </form>
                     </div>
                 </div>

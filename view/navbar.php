@@ -15,8 +15,8 @@ Bem vindo, <?php foreach($user as $key){echo $key['nome'];} ?>
 
 <?php  }else{  ?>
 
-<strong><a href="login.php">Iniciar Sessão</a></strong> 
-
+<strong><a href="login.php">Iniciar Sessão</a></strong> ||
+<strong><a href="cadastro.php">Criar Conta</a></strong> 
 
 
 <?php   }   ?>
