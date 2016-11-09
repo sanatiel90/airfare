@@ -34,30 +34,47 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form method="POST" action="" >
-                            <label>*Nome</label>
-                            <input type="text" id="" name="" placeholder="Informe o seu nome" class="form-control"  required /><br>
+                        
+
+
+                        <form method="POST" action="controller/cadastrar.php" >
+                            <label>*Nome</label>   <?php if(isset($_GET['name_insuficient'])){ echo '&nbsp;&nbsp;&nbsp;<strong style="color:red">Nome precisa ter ao menos 10 caracteres</strong>';  } ?>   <?php if(isset($_GET['name_invalid'])){ echo '&nbsp;&nbsp;&nbsp;<strong style="color:red">Informe apenas letras e espaços</strong>';  } ?>
+                              <input type="text" id="" name="nome" placeholder="Informe o seu nome" class="form-control"  required maxlength="80" /><br>
+                          
                             <label>*E-mail</label>
-                            <input type="email" name="" placeholder="Informe o seu e-mail" class="form-control" required /><br>
+                              <input type="email" name="email" placeholder="Informe o seu e-mail" class="form-control" required maxlength="50" /><br>
 
-                             <label for="">*Senha:</label>
-                            <input id="" type="password" name="" placeholder="Informe uma senha de acesso"  class="form-control" style="width:250px" required /><br>
+                            <label>*Senha:</label>  <?php if(isset($_GET['password_insuficient'])){ echo '&nbsp;&nbsp;&nbsp;<strong style="color:red">Senha precisa ter ao menos 6 caracteres</strong>';  } ?>
+                              <input  type="password"  name="password" placeholder="Informe uma senha de acesso"  class="form-control" style="width:250px" required /><br>
 
-                            <label for="">*CPF:</label>
-                            <input id="" type="text" name="" placeholder="Informe o seu cpf"  class="form-control" style="width:250px" required/><br>
+                             <label>*Confirmar Senha:</label>  <?php if(isset($_GET['password_different'])){ echo '<br><strong style="color:red">Senha e Confirmação de senhas não estão iguais</strong>';  } ?>
+                              <input  type="password" name="confpassword" placeholder="Informe uma senha de acesso"  class="form-control" style="width:250px" required /><br>
+  
 
-                             <label for="">*RG:</label>
-                            <input id="" type="text" name="" placeholder="Informe o seu rg"  class="form-control" style="width:250px" required/><br>
+                            <label>*CPF:</label> <?php if(isset($_GET['cpf_insuficient'])){ echo '&nbsp;&nbsp;&nbsp;<strong style="color:red">Informe todos os dígitos do CPF</strong>';  } ?>
+                              <input  type="number" name="cpf" placeholder="Informe o seu cpf"  class="form-control" style="width:250px" required maxlength="10" /><br>
+
+                            <label>*RG:</label>
+                              <input  type="number" name="rg" placeholder="Informe o seu rg"  class="form-control" style="width:250px" required maxlength="13" /><br>
+
+                            <label>*Cartão de Crédito</label>
+                                <select name="cartaocredito" class="form-control">
+                                    <option value="1">Visa</option>
+                                    <option value="2">MasterCard</option>
+                                </select>  <br>
 
                             <label for="">Telefone:</label>
-                            <input id="" type="text" name="" placeholder="Informe o seu telefone com DDD"  class="form-control" style="width:250px" /><br>
+                              <input  type="number" name="telefone" placeholder="Informe o seu telefone"  class="form-control" style="width:180px" maxlength="11" /><br>
 
-                            <button class="btn btn-success form-control">Cadastrar</button>
+                            <button class="btn btn-primary form-control">Cadastrar</button>
+                            <br><br><br>
                         </form>
+
                     </div>
                 </div>
               <div class="col-lg-4"></div> 
             </section>
+                  
 		</div>
 	</body>
 </html>

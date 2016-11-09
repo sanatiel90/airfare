@@ -1,12 +1,12 @@
 <?php
 
 include_once '../model/class/Manager.class.php';
-include_once '../model/class/User.class.php';
+
 
 $manager = new Manager();
 
 
-$user = $manager->login_cliente($_POST['email'],$_POST['password']);
+$user = $manager->login_cliente($_POST['email'],sha1($_POST['password']));
 
 
 if($user == false){

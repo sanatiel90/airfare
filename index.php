@@ -61,7 +61,7 @@
                             <label for="data-voo">Data da saída:</label>
                             <input id="data-voo" type="date" name="data_voo" class="form-control" style="width:170px" required/><br>
 
-                            <button class="btn btn-success form-control">Pesquisar</button>
+                            <button class="btn btn-primary form-control">Pesquisar</button>
                         </form>
                     </div>
                 </div>

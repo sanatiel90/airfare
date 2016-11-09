@@ -41,6 +41,15 @@
 
                         <?php } ?>
 
+
+                        <?php if(isset($_GET["user_created"])){ ?>
+                            
+                            <div class="alert alert-success text-center" >
+                                <strong> Cadastro realizado com sucesso! Realize agora seu login!</strong>
+                            </div>
+
+                        <?php } ?>
+
                         <form method="POST" action="controller/logar.php" >
                             <input type="email"  name="email" placeholder="Informe o seu e-mail" class="form-control"  required /><br>
                             <input type="password" name="password" placeholder="Informe a sua senha" class="form-control" required /><br>

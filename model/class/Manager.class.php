@@ -106,7 +106,31 @@ class Manager extends Connection{
 
 
 
+	public function insert_cliente($nome,$cpf,$email,$telefone,$rg,$senha,$cartaocredito){
 
+		$pdo = parent::getCon();
+
+		try{
+
+			//chamando stored procedure de inserção de clientes que foi criada no banco dados
+			$stmt = $pdo->prepare("CALL sp_insere_cliente(:nome,:cpf,:email,:telefone,:rg,:senha,:cartaocredito)");
+
+			$stmt->bindValue(":nome",$nome);
+			$stmt->bindValue(":cpf",$cpf);
+			$stmt->bindValue(":email",$email);
+			$stmt->bindValue(":telefone",$telefone);
+			$stmt->bindValue(":rg",$rg);
+			$stmt->bindValue(":senha",$senha);
+			$stmt->bindValue(":cartaocredito",$cartaocredito);
+			
+			$stmt->execute();
+
+
+		}catch(Exception $e){
+			$e->getMessage();
+		}
+
+	}
 
 
 	
