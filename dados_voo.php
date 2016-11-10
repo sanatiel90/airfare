@@ -9,7 +9,7 @@ $manager = new Manager();
 $_SESSION['dados_voo'] = $manager->voo_solicitado($_GET['id']);
 
 
-if(isset($_SESSION['user'])){
+if(isset($_SESSION[md5('user')])){
 
 	header("location: comprar.php");
 

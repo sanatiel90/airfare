@@ -2,7 +2,7 @@
 
 session_start(); 
 
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION[md5('user')])){
 
 	//se não houver usuário logado redireciona para pág inicial
 	header("location: index.php");
@@ -10,7 +10,7 @@ if(!isset($_SESSION['user'])){
 }else{
 
 	//recupera os dados do usuário logado e do voo que foi solicitada a compra
-	$user = $_SESSION['user'];
+	$user = $_SESSION[md5('user')];
 	$dados_voo = $_SESSION['dados_voo'];
 
 }

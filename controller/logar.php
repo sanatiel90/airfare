@@ -16,7 +16,7 @@ if($user == false){
 
 	session_start();
 
-	$_SESSION['user'] = $user;
+	 $_SESSION[md5('user')] = $user;
 
 	
 

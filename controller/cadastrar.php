@@ -3,31 +3,6 @@
 include_once '../model/class/Manager.class.php';
 
 $manager = new Manager();
-/*
-echo $_POST['nome'];
-echo '<br>';
-
-echo $_POST['email'];
-echo '<br>';
-
-echo $_POST['password'];
-echo '<br>';
-
-echo $_POST['cartaocredito'];
-echo '<br>';
-
-echo $_POST['telefone'];
-echo '<br>';
-
-echo $_POST['cpf'];
-echo '<br>';
-
-echo $_POST['rg'];
-echo '<br>';
-*/
-
-
-
 
 
 

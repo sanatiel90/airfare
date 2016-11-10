@@ -1,9 +1,9 @@
 <?php 
 
 
-if(isset($_SESSION['user'])){  
+if(isset($_SESSION[md5('user')])){  
 
-$user = $_SESSION['user'];
+$user = $_SESSION[md5('user')];
 
 ?>
 
