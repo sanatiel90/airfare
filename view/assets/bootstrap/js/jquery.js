@@ -10354,6 +10354,14 @@ return jQuery;
 
 
 
+$(function(){
+	//fazer form da confirmação de comprar dar submit ao confirmar na caixa de modal
+	$('#confcompra').on('click',function(){
+		$('form').submit();
+	});
+
+});
+
 
 
 

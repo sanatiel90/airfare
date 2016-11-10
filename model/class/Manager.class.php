@@ -127,13 +127,37 @@ class Manager extends Connection{
 
 
 		}catch(Exception $e){
-			$e->getMessage();
+			echo $e->getMessage();
 		}
 
 	}
 
 
-	
+	public function insert_pedido($quantidade,$preco,$cod_voo,$cod_cli){
+
+			$pdo = parent::getCon();
+
+			try{
+
+				$stmt = $pdo->prepare("INSERT INTO pedidos(quantidade_pessoas,preco_total,cod_voo,cod_cliente) VALUES(:quant,:preco,:voo,:cli)");
+
+				$stmt->bindValue(":quant",$quantidade);
+				$stmt->bindValue(":preco",$preco);
+				$stmt->bindValue(":voo",$cod_voo);
+				$stmt->bindValue(":cli",$cod_cli);
+
+				if($stmt->execute()){
+					return $pdo->lastInsertId();
+				}else{
+					return false;
+				}
+
+
+			}catch(Exception $e){
+				echo $e->getMessage();
+			}
+
+	}
 	
 
 

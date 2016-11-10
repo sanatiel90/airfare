@@ -44,6 +44,24 @@
 
                 <?php } ?>
 
+
+                <?php if(isset($_GET['compra_success'])){ ?>
+
+                    <div class="alert alert-success text-center" >
+                         <strong>Compra da passagem realizada com sucesso!</strong>
+                    </div>
+
+                <?php } ?>
+
+
+                <?php if(isset($_GET['error_compra'])){ ?>
+
+                    <div class="alert alert-danger text-center" >
+                         <strong>Ocorreu um erro, compra não efetivada</strong>
+                    </div>
+
+                <?php } ?>
+
                     <div class="panel panel-success" >
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">

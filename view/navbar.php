@@ -7,7 +7,7 @@ $user = $_SESSION[md5('user')];
 
 ?>
 
-Bem vindo, <?php foreach($user as $key){echo $key['nome'];} ?>
+Bem vindo, <strong><?php foreach($user as $key){echo $key['nome'];}?></strong>
 <br>
 <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-user"></span> Perfil</a>
 

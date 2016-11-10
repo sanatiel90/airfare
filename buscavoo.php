@@ -55,7 +55,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                         <div style="background-color:white; height:250px;">
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:left"><strong>SAÍDA</strong></div>
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:right"><strong>DESTINO</strong></div>
-                            <div style="background-color:#DAA520; height:25px; width:100%; float:left">
+                            <div style="background-color:#FFEBCD; height:25px; width:100%; float:left; color:#696969">
                                 <div class="text-center"  style="float:left; width:7%;"><strong>UF</strong></div>
                                 <div class="text-center" style="float:left; width:15%;"><strong>Cidade</strong></div>
                                 <div class="text-center" style="float:left; width:28%;"><strong>Aeroporto</strong></div>
@@ -65,17 +65,17 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                             </div>
 
                             <div style="background-color:white; height:40px; width:100%; float:left">
-                                <div class="text-center"  style="float:left; width:7%;"><?php echo $key['estado_origem'] ?></div>
-                                <div class="text-center" style="float:left; width:15%;"><?php echo $key['cidade_origem'] ?></div>
-                                <div class="text-center" style="float:left; width:28%;"><?php echo $key['aeroporto_origem'] ?></div>
-                                <div class="text-center" style="float:left; width:7%;"><?php echo $key['estado_destino'] ?></div>
-                                <div class="text-center" style="float:left; width:15%;"><?php echo $key['cidade_destino'] ?></div>
-                                <div class="text-center" style="float:left; width:28%;"><?php echo $key['aeroporto_destino'] ?></div>
+                                <div class="text-center"  style="float:left; width:7%;"><strong><?php echo $key['estado_origem'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:15%;"><strong><?php echo $key['cidade_origem'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:28%;"><strong><?php echo $key['aeroporto_origem'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:7%;"><strong><?php echo $key['estado_destino'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:15%;"><strong><?php echo $key['cidade_destino'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:28%;"><strong><?php echo $key['aeroporto_destino'] ?></strong></div>
                             </div>
 
                             <div class="text-center" style="height:25px; width:100%; background-color:#5F9EA0; float:left"><strong>INFORMAÇÕES DO VÔO</strong></div>
 
-                            <div style="background-color:#DAA520; height:25px; width:100%; float:left">
+                            <div style="background-color:#FFEBCD; height:25px; width:100%; float:left; color:#696969">
                                 <div class="text-center"  style="float:left; width:13%;"><strong>Data do Vôo</strong></div>
                                 <div class="text-center" style="float:left; width:13%;"><strong>Hora Saída</strong></div>
                                 <div class="text-center" style="float:left; width:13%;"><strong>Hora Chegada</strong></div>
@@ -87,14 +87,14 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                             </div>
 
                             <div style="background-color:white; height:30px; width:100%; float:left">
-                                <div class="text-center"  style="float:left; width:13%;"><?php echo $key['data_voo'] ?></div>
-                                <div class="text-center" style="float:left; width:13%;"><?php echo $key['hora_saida'] ?></div>
-                                <div class="text-center" style="float:left; width:13%;"><?php echo $key['hora_chegada'] ?></div>
-                                <div class="text-center" style="float:left; width:13%;"><?php echo $key['duracao_voo'] ?></div>
-                                <div class="text-center" style="float:left; width:14%;"><?php echo $key['companhia'] ?></div>
-                                <div class="text-center" style="float:left; width:6%;"><?php echo $key['vagas_disponiveis'] ?></div>
-                                <div class="text-center" style="float:left; width:12%;">R$ <?php echo $key['preco'] ?>,00</div>
-                                <div class="text-center" style="float:left; width:16%;"><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-success">Comprar</a></div>
+                                <div class="text-center"  style="float:left; width:13%;"><strong><?php echo $key['data_voo'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['hora_saida'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['hora_chegada'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['duracao_voo'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:14%;"><strong><?php echo $key['companhia'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:6%;"><strong><?php echo $key['vagas_disponiveis'] ?></strong></div>
+                                <div class="text-center" style="float:left; width:12%;"><strong>R$ <?php echo $key['preco'] ?>,00</strong></div>
+                                <div class="text-center" style="float:left; width:16%;"><strong><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-primary">Comprar</a></div>
                             </div>
                         </div>
                          <?php }/*fim foreach*/   }else{  ?>
