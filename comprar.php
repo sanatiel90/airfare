@@ -33,7 +33,7 @@ if(!isset($_SESSION[md5('user')])){
 			<header class="row navbar navbar-default cabecalho"><!-- cabecalho -->
 				<div class="col-lg-8 ">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.php">Projeto AirFare</a>
+						<a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -95,7 +95,7 @@ if(!isset($_SESSION[md5('user')])){
                             </div>
 
                             <div style="background-color:white; height:30px; width:100%; float:left; color:black">
-                                <div class="text-center"  style="float:left; width:17%;"><strong><?php foreach ($dados_voo as $key) {echo $key["data_voo"]; }?></strong></div>
+                                <div class="text-center"  style="float:left; width:17%;"><strong><?php foreach ($dados_voo as $key) {echo  date("d/m/Y",strtotime($key["data_voo"])); }?></strong></div>
                                 <div class="text-center" style="float:left; width:17%;"><strong><?php foreach ($dados_voo as $key) {echo $key["hora_saida"]; }?></strong></div>
                                 <div class="text-center" style="float:left; width:17%;"><strong><?php foreach ($dados_voo as $key) {echo $key["hora_chegada"]; }?></strong></div>
                                 <div class="text-center" style="float:left; width:17%;"><strong><?php foreach ($dados_voo as $key) {echo $key["duracao_voo"]; }?></strong></div>
@@ -120,17 +120,17 @@ if(!isset($_SESSION[md5('user')])){
 
                             <div style="background-color:white; height:40px; width:100%; float:left;">
                                
-                                <div class="text-center" style="float:left; width:22%; color:black"><strong><?php foreach ($user as $key) {echo $key["nome"]; }?></strong></div>
+                                <div class="text-center" style="float:left; width:22%; color:black"><strong><?php foreach ($user as $key) {echo $key["nome_cli"]; }?></strong></div>
                                 <div class="text-center" style="float:left; width:28%; color:black"><strong><?php foreach ($user as $key) {echo $key["email"]; }?></strong></div>
                                 
                                 <div class="text-center" style="float:left; width:22%; color:black"><strong><?php foreach ($user as $key) {echo $key["telefone"]; }?></strong></div>
-                                <div class="text-center" style="float:left; width:28%; color:black"><strong><?php foreach ($user as $key) {echo $key["cod_cartao_credito"]; }?></strong></div>
+                                <div class="text-center" style="float:left; width:28%; color:black"><strong><?php foreach ($user as $key) {echo $key["nome_cartao"]; }?></strong></div>
                             </div>
                             
                          
                       <br> <br> <br> <br> <br> 
                       
-                      <div class="text-center" style="background-color:white; height:28px; font-size:18px">
+                      <div class="text-center" style="background-color:white; height:28px; font-size:16px">
                         <div style="background-color:#B0E0E6; width:49%; float:left; height:28px; border-radius:5px">
                           <strong>Quantidade de Passagens</strong>
                             <select id="quantidade" onchange="atualizaPreco()">
@@ -141,12 +141,28 @@ if(!isset($_SESSION[md5('user')])){
                               <option value="5">5</option>
                               <option value="6">6</option>
                             </select>
-                       </div>
+                        </div>
+                      
                        <div style="background-color:#B0E0E6; width:49%; float:right; height:28px; border-radius:5px">
-                          <strong>Preço Total</strong>
-                          <label style="color:green">R$</label> <label id="preco" style="color:green"><?php foreach ($dados_voo as $key) {echo $key["preco"]; }?></label>
+                          <strong>Quantidade Desconto: </strong>
+                          <label id="desconto">0%</label>
                        </div>
+                      
+                     </div>
 
+                     <br>
+
+                      <div class="text-center" style="background-color:white; height:28px; font-size:16px">
+                        <div style="background-color:#B0E0E6; width:49%; float:left; height:28px; border-radius:5px">
+                          <strong>Valor pago por cada Passagem: </strong>
+                          <label>R$</label> <label id="valor_passagem"><?php foreach ($dados_voo as $key) {echo $key["preco"]; }?></label> 
+                       </div>
+                      
+                       <div style="background-color:#B0E0E6; width:49%; float:right; height:28px; border-radius:5px; font-size:18px">
+                          <strong>Preço Total</strong>
+                          <label style="color:green">R$</label> <label style="color:green" id="preco"><?php foreach ($dados_voo as $key) {echo $key["preco"]; }?></label>
+
+                       </div>
                       
                      </div>
 
@@ -154,19 +170,28 @@ if(!isset($_SESSION[md5('user')])){
 
                      <!-- Formulário com os dados do pedido que será enviado ao banco -->
                      <div class="col-lg-12">
-                       <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
+                       <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
                          <form method="POST" action="controller/confirma_compra.php">
                            <input id="preco_voo" type="hidden" value="<?php foreach ($dados_voo as $key) {echo $key["preco"]; }?>" >
-                           <input type="hidden" name="cod_cliente" value="<?php foreach ($user as $key) {echo $key["id"]; }?>">
+                           <input type="hidden" name="cod_cliente" value="<?php foreach ($user as $key) {echo $key["id_cli"]; }?>">
                            <input type="hidden" name="cod_voo" value="<?php foreach ($dados_voo as $key) {echo $key["id"]; }?>" >
                            <input id="quantidade_passagens" type="hidden" name="quantidade" value="1">
                            <input id="preco_total" type="hidden" name="preco_total" value="<?php foreach ($dados_voo as $key) {echo $key["preco"]; }?>">
 
-                           <button id="btcompra" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#comprar" ><strong>Comprar</strong></button>
+                           <div class="col-lg-12">
+                             <div class="col-lg-6">
+                                 <a  class="btn btn-danger form-control" href="index.php" ><strong>Cancelar Pedido</strong></a>  
+                             </div>
+                                                           
+                             <div class="col-lg-6">
+                                  <button id="btcompra" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#comprar" ><strong>Comprar</strong></button> 
+                             </div>
+                           </div>
+
                          </form>
                         </div> 
-                       <div class="col-lg-4"></div>
+                       <div class="col-lg-2"></div>
                      </div>
 
                      <br><br><br><br>
@@ -192,30 +217,44 @@ function atualizaPreco(){
 
   var quantPassagens = document.getElementById("quantidade").value;
   var precoVoo = document.getElementById("preco_voo").value;
-  
+  var desconto;
+  //var valorPorPassagem;
   //dependendo de quantas passagens o cliente quiser será aplicado um desconto
-  if (quantPassagens == 2) {
+  if(quantPassagens == 1){
+   desconto = "0%";
+
+  }else if (quantPassagens == 2) {
    precoVoo -= precoVoo*0.05;
+   desconto = "5%";
+
 
   }else if(quantPassagens == 3){
    precoVoo -= precoVoo*0.07;
+   desconto = "7%";
 
   }else if(quantPassagens == 4){
    precoVoo -= precoVoo*0.10;
+   desconto = "10%";
 
   }else if(quantPassagens == 5){
    precoVoo -= precoVoo*0.13;
+   desconto = "13%";
 
   }else if(quantPassagens == 6){
    precoVoo -= precoVoo*0.16;
-  
+   desconto = "16%";
+
   }
 
   //mostrar valor final com no máximo 2 casas decimais
+
+  var valorPorPassagem = precoVoo; //ESSA LINHA DA PROB
   var x = quantPassagens*precoVoo;
   var result = parseFloat(x.toFixed(2));
 
   //atribuindo valores
+   document.getElementById("valor_passagem").innerHTML = valorPorPassagem;
+  document.getElementById("desconto").innerHTML = desconto;
   document.getElementById("preco").innerHTML = result;
   document.getElementById("preco_total").value = result;
   document.getElementById("quantidade_passagens").value = quantPassagens;

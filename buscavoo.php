@@ -3,7 +3,14 @@ session_start();
 include_once('model/class/Manager.class.php');
 
 $manager = new Manager();
+
+$search_result = null;
+
+if(isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST['data_voo'])){
+
 $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino'], $_POST['data_voo']);
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +24,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 			<header class="row navbar navbar-default cabecalho">
 				<div class="col-lg-8">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.php">Projeto AirFare</a>
+						<a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -87,7 +94,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                             </div>
 
                             <div style="background-color:white; height:30px; width:100%; float:left">
-                                <div class="text-center"  style="float:left; width:13%;"><strong><?php echo $key['data_voo'] ?></strong></div>
+                                <div class="text-center"  style="float:left; width:13%;"><strong><?php echo date("d/m/Y",strtotime($key['data_voo']));  ?></strong></div>
                                 <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['hora_saida'] ?></strong></div>
                                 <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['hora_chegada'] ?></strong></div>
                                 <div class="text-center" style="float:left; width:13%;"><strong><?php echo $key['duracao_voo'] ?></strong></div>

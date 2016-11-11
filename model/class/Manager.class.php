@@ -76,7 +76,7 @@ class Manager extends Connection{
 
 		try{
 
-			$stmt = $pdo->prepare("SELECT * FROM clientes WHERE email = :email AND senha = :password  LIMIT 1");
+			$stmt = $pdo->prepare("SELECT * FROM v_dados_cliente WHERE email = :email AND senha = :password  LIMIT 1");
 
 			
 			$stmt->bindValue(":email",$email);

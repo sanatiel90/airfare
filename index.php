@@ -10,7 +10,7 @@
 			<header class="row navbar navbar-default cabecalho"><!-- cabecalho -->
 				<div class="col-lg-8 ">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.php">Projeto AirFare</a>
+						<a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -48,7 +48,7 @@
                 <?php if(isset($_GET['compra_success'])){ ?>
 
                     <div class="alert alert-success text-center" >
-                         <strong>Compra da passagem realizada com sucesso!</strong>
+                         <strong>Compra da passagem realizada com sucesso! Acesse suas compras para emitir o comprovante</strong>
                     </div>
 
                 <?php } ?>

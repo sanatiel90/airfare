@@ -10,7 +10,7 @@
 			<header class="row navbar navbar-default cabecalho"><!-- cabecalho -->
 				<div class="col-lg-8 ">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.php">Projeto AirFare</a>
+						<a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
 					</div>
 				</div>
 				<div class="col-lg-4">
