@@ -162,6 +162,41 @@ class Manager extends Connection{
 
 
 	
+	public function lista_compras_cliente($id){
+
+		$pdo = parent::getCon();
+
+		try{
+
+			$stmt = $pdo->prepare("SELECT * FROM v_dados_pedido WHERE id_cli = :id ORDER BY data_pedido DESC");
+
+			$stmt->bindValue(":id",$id);
+			
+
+			$stmt->execute();
+
+			$result = array();
+
+			if($stmt->rowCount()){
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result[] = $row;
+				}
+
+				return $result;
+			}else{
+
+				return false;
+			}
+
+
+
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+
+	}
+
+
 
 
 

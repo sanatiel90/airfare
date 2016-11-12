@@ -7,11 +7,11 @@ $user = $_SESSION[md5('user')];
 
 ?>
 
-Bem vindo, <strong><?php foreach($user as $key){echo $key['nome_cli'];}?></strong>
+Bem vindo(a), <strong><?php foreach($user as $key){echo $key['nome_cli'];}?></strong>
 <br>
 <a href="perfil.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-user"></span> Perfil</a>
 
-<a href="controller/logout.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plane"></span> Minhas Compras</a>
+<a href="minhas_compras.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plane"></span> Minhas Compras</a>
 
 <a href="controller/logout.php" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-off"></span> Sair</a>
 

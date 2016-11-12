@@ -91,22 +91,8 @@ if(!isset($_SESSION[md5("user")])){
                               
                         </form>
 
-                        <br><br><br><br><br><br><br><br><br><br><br>
+                       
 
-                        <h3 class="text-center">Histórico de Pedidos</h3>
-                          <div class="col-lg-12">
-                            <div class="col-lg-6">
-                                
-                                
-                                
-                            </div>
-
-                            <div class="col-lg-6">
-                               
-                            </div>
-                           
-                          </div>
-                            
                           
                       
                     </div> <!-- fim panel-body -->

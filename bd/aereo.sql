@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 04-Nov-2016 às 21:32
+-- Generation Time: 12-Nov-2016 às 02:49
 -- Versão do servidor: 5.7.12
 -- PHP Version: 5.6.21
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `aereo`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insere_cliente` (IN `nome` VARCHAR(80), IN `cpf` CHAR(11), IN `email` VARCHAR(50), IN `telefone` VARCHAR(18), IN `rg` VARCHAR(13), IN `senha` VARCHAR(255), IN `cod_cartao_credito` INT(11))  BEGIN
+	INSERT INTO clientes(nome,cpf,email,telefone,rg,senha,cod_cartao_credito) VALUES(nome,cpf,email,telefone,rg,senha,cod_cartao_credito);
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -95,8 +106,8 @@ CREATE TABLE `clientes` (
   `cpf` char(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telefone` varchar(18) DEFAULT NULL,
-  `rg` char(11) NOT NULL,
-  `senha` varchar(30) NOT NULL,
+  `rg` varchar(13) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `cod_cartao_credito` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,8 +116,10 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `cpf`, `email`, `telefone`, `rg`, `senha`, `cod_cartao_credito`) VALUES
-(1, 'Tales Azevedo', '00011122232', 'tales@yahoo.com', '8599999959', '19989890021', '123456', 1),
-(2, 'Maria Eliana', '55555555512', 'meliana@gmail.com', '2187878000', '2000200200', '123456', 2);
+(16, 'Rubens Azevedo', '05454554552', 'rubens@gmail.com', '85999595959', '199595995954', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 2),
+(17, 'Mario Sergio', '11155544422', 'mario@yahoo.com', '85998988556', '22225554569', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
+(18, 'Geisa Mariana', '22255544410', 'geisa@gmail.com', '2199955547', '15151123164', '4b4b04529d87b5c318702bc1d7689f70b15ef4fc', 1),
+(19, 'Roger Luiz', '00055544422', 'roger@yahoo.com', '2198987414', '22405446544', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1);
 
 -- --------------------------------------------------------
 
@@ -185,8 +198,30 @@ CREATE TABLE `pedidos` (
   `quantidade_pessoas` int(11) NOT NULL,
   `preco_total` decimal(10,0) NOT NULL,
   `cod_voo` int(11) NOT NULL,
-  `cod_cliente` int(11) NOT NULL
+  `cod_cliente` int(11) NOT NULL,
+  `data_pedido` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `quantidade_pessoas`, `preco_total`, `cod_voo`, `cod_cliente`, `data_pedido`) VALUES
+(3, 2, '2324', 4, 17, '2016-11-11 10:58:03'),
+(4, 1, '1223', 4, 18, '2016-11-11 12:55:55'),
+(5, 1, '1150', 2, 18, '2016-11-11 13:04:12'),
+(6, 3, '3069', 1, 18, '2016-11-11 15:01:56');
+
+--
+-- Acionadores `pedidos`
+--
+DELIMITER $$
+CREATE TRIGGER `t_atualiza_passagens` AFTER INSERT ON `pedidos` FOR EACH ROW BEGIN
+  UPDATE voos SET vagas_disponiveis = vagas_disponiveis - NEW.quantidade_pessoas WHERE id = NEW.cod_voo;	
+  
+ END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -203,6 +238,7 @@ CREATE TABLE `voos` (
   `hora_chegada` time NOT NULL,
   `duracao_voo` time NOT NULL,
   `data_voo` date NOT NULL,
+  `total_vagas` int(11) NOT NULL,
   `vagas_disponiveis` int(11) NOT NULL,
   `cod_companhia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -211,11 +247,57 @@ CREATE TABLE `voos` (
 -- Extraindo dados da tabela `voos`
 --
 
-INSERT INTO `voos` (`id`, `preco`, `cod_aeroporto_origem`, `cod_aeroporto_destino`, `hora_saida`, `hora_chegada`, `duracao_voo`, `data_voo`, `vagas_disponiveis`, `cod_companhia`) VALUES
-(1, '1100', 1, 2, '13:30:00', '19:25:00', '05:55:00', '2016-11-21', 160, 1),
-(2, '1150', 1, 2, '17:00:00', '22:00:00', '06:00:00', '2016-11-23', 180, 2),
-(3, '850', 3, 4, '14:00:00', '17:00:00', '03:00:00', '2016-11-23', 140, 3),
-(4, '1223', 1, 2, '09:00:00', '15:20:00', '06:20:00', '2016-11-21', 152, 4);
+INSERT INTO `voos` (`id`, `preco`, `cod_aeroporto_origem`, `cod_aeroporto_destino`, `hora_saida`, `hora_chegada`, `duracao_voo`, `data_voo`, `total_vagas`, `vagas_disponiveis`, `cod_companhia`) VALUES
+(1, '1100', 1, 2, '13:30:00', '19:25:00', '05:55:00', '2016-11-21', 160, 157, 1),
+(2, '1150', 1, 2, '17:00:00', '22:00:00', '06:00:00', '2016-11-23', 180, 180, 2),
+(3, '850', 3, 4, '14:00:00', '17:00:00', '03:00:00', '2016-11-23', 140, 140, 3),
+(4, '1223', 1, 2, '09:00:00', '15:20:00', '06:20:00', '2016-11-21', 140, 152, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_dados_cliente`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_dados_cliente` (
+`id_cli` int(11)
+,`nome_cli` varchar(80)
+,`email` varchar(50)
+,`cpf` char(11)
+,`rg` varchar(13)
+,`telefone` varchar(18)
+,`senha` varchar(255)
+,`id_cartao` int(11)
+,`nome_cartao` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_dados_pedido`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_dados_pedido` (
+`id_pedido` int(11)
+,`quantidade_pessoas` int(11)
+,`preco_total` decimal(10,0)
+,`data_pedido` datetime
+,`id_cli` int(11)
+,`nome_cli` varchar(80)
+,`cpf` char(11)
+,`id_voo` int(11)
+,`aeroporto_origem` varchar(30)
+,`aeroporto_destino` varchar(30)
+,`data_voo` date
+,`hora_saida` time
+,`hora_chegada` time
+,`duracao_voo` time
+,`companhia` varchar(50)
+,`cidade_origem` varchar(30)
+,`cidade_destino` varchar(30)
+,`estado_origem` char(2)
+,`estado_destino` char(2)
+);
 
 -- --------------------------------------------------------
 
@@ -239,6 +321,24 @@ CREATE TABLE `v_dados_voo` (
 ,`estado_origem` char(2)
 ,`estado_destino` char(2)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_dados_cliente`
+--
+DROP TABLE IF EXISTS `v_dados_cliente`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_dados_cliente`  AS  select `cli`.`id` AS `id_cli`,`cli`.`nome` AS `nome_cli`,`cli`.`email` AS `email`,`cli`.`cpf` AS `cpf`,`cli`.`rg` AS `rg`,`cli`.`telefone` AS `telefone`,`cli`.`senha` AS `senha`,`cartoes_credito`.`id` AS `id_cartao`,`cartoes_credito`.`nome` AS `nome_cartao` from (`clientes` `cli` join `cartoes_credito` on((`cli`.`cod_cartao_credito` = `cartoes_credito`.`id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_dados_pedido`
+--
+DROP TABLE IF EXISTS `v_dados_pedido`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_dados_pedido`  AS  select `pedidos`.`id` AS `id_pedido`,`pedidos`.`quantidade_pessoas` AS `quantidade_pessoas`,`pedidos`.`preco_total` AS `preco_total`,`pedidos`.`data_pedido` AS `data_pedido`,`cliente`.`id_cli` AS `id_cli`,`cliente`.`nome_cli` AS `nome_cli`,`cliente`.`cpf` AS `cpf`,`voo`.`id` AS `id_voo`,`voo`.`aeroporto_origem` AS `aeroporto_origem`,`voo`.`aeroporto_destino` AS `aeroporto_destino`,`voo`.`data_voo` AS `data_voo`,`voo`.`hora_saida` AS `hora_saida`,`voo`.`hora_chegada` AS `hora_chegada`,`voo`.`duracao_voo` AS `duracao_voo`,`voo`.`companhia` AS `companhia`,`voo`.`cidade_origem` AS `cidade_origem`,`voo`.`cidade_destino` AS `cidade_destino`,`voo`.`estado_origem` AS `estado_origem`,`voo`.`estado_destino` AS `estado_destino` from ((`pedidos` join `v_dados_cliente` `cliente` on((`pedidos`.`cod_cliente` = `cliente`.`id_cli`))) join `v_dados_voo` `voo` on((`pedidos`.`cod_voo` = `voo`.`id`))) ;
 
 -- --------------------------------------------------------
 
@@ -340,7 +440,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `companhias`
 --
@@ -360,7 +460,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `voos`
 --

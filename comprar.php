@@ -144,7 +144,7 @@ if(!isset($_SESSION[md5('user')])){
                         </div>
                       
                        <div style="background-color:#B0E0E6; width:49%; float:right; height:28px; border-radius:5px">
-                          <strong>Quantidade Desconto: </strong>
+                          <strong>Percentual Desconto: </strong>
                           <label id="desconto">0%</label>
                        </div>
                       
