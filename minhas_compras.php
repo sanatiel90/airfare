@@ -50,7 +50,6 @@ if (!isset($_SESSION[md5("user")])) {
                     </div>
                     <div class="panel-body">
                         <h3 class="text-center">Histórico de Compras</h3>
-
                         <?php
                         if ($search_result != null) {
                             foreach ($search_result as $user) {
@@ -89,9 +88,9 @@ if (!isset($_SESSION[md5("user")])) {
                                         <th class="text-center">Comprovante</th>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $user["cidade_origem"]; ?> (<?php echo $user["estado_origem"]; ?>)</td>
+                                        <td><?php echo $user["cidade_origem"] . "(" . $user["estado_origem"] . ")"; ?></td>
                                         <td><?php echo $user["aeroporto_origem"]; ?></td>
-                                        <td><?php echo $user["cidade_destino"]; ?> (<?php echo $user["estado_destino"]; ?>)</td>
+                                        <td><?php echo $user["cidade_destino"] . "(" . $user["estado_destino"] . ")"; ?></td>
                                         <td><?php echo $user["aeroporto_destino"]; ?></td>
                                         <td><a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Emitir</a></td>
                                     </tr>

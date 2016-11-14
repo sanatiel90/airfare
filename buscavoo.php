@@ -3,62 +3,58 @@ session_start();
 include_once('model/class/Manager.class.php');
 
 $manager = new Manager();
-
 $search_result = null;
 
-if(isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST['data_voo'])){
-
-$search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino'], $_POST['data_voo']);
-
+if (isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST['data_voo'])) {
+    $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino'], $_POST['data_voo']);
 }
 
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Pesquisa Vôo</title>
-		<link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
-	</head>
-	<body>
-		<div class="container">
-			<header class="row navbar navbar-default cabecalho">
-				<div class="col-lg-8">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="navbar-header">
-                        <p class="navbar-text"><?php include_once 'view/navbar.php'; ?></p>
+    <head>
+        <title>Pesquisa Vôo</title>
+        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container">
+            <header class="row navbar navbar-default cabecalho">
+                <div class="col-lg-8">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.php"><strong>Projeto AirFare</strong></a>
                     </div>
-				</div>
-			</header>
-			<section class="row">
-				<div class="col-lg-3">
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h3 class="panel-title text-center"><strong>Refine sua busca</strong></h3>
-						</div>
-						<div class="panel-body">
-							
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-9" >
-					<div class="panel panel-success" >
+                </div>
+                <div class="col-lg-4">
+                    <div class="navbar-header">
+                        <p class="navbar-text"><?php include_once("view/navbar.php") ?></p>
+                    </div>
+                </div>
+            </header>
+            <section class="row">
+                <div class="col-lg-3">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center"><strong>Refine sua busca</strong></h3>
+                        </div>
+                        <div class="panel-body"></div>
+                    </div>
+                </div>
+                <div class="col-lg-9" >
+                    <div class="panel panel-success" >
                         <!-- para as opcoes q nao tem pagina msm, como perfil, verifica se foi mandado algum OPTION pela url e adequa o nome do panel e titulo da pag -->
-						<div class="panel-heading" style="background-color:lightgreen;">
-							<h3 class="panel-title">
-								<span class="glyphicon glyphicon-th">
-									<strong style="font-family:arial;"> Resultado da busca</strong>
-								</span>
-							</h3>
-						</div>
-					</div>
-					<div class="panel-body">
-                      <?php if($search_result != null){ 
-                         foreach ($search_result as $key) { ?>
+                        <div class="panel-heading" style="background-color:lightgreen;">
+                            <h3 class="panel-title">
+                                <span class="glyphicon glyphicon-th">
+                                    <strong style="font-family:arial;"> Resultado da busca</strong>
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <?php
+                            if ($search_result != null) {
+                                foreach ($search_result as $key) {
+                        ?>
                         <div style="background-color:white; height:250px;">
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:left"><strong>SAÍDA</strong></div>
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:right"><strong>DESTINO</strong></div>
@@ -104,19 +100,19 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                                 <div class="text-center" style="float:left; width:16%;"><strong><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-primary">Comprar</a></div>
                             </div>
                         </div>
-                         <?php }/*fim foreach*/   }else{  ?>
-
-                            <h4 class="text-center">
-                               <strong> Não foram encontrados vôos para a pesquisa solicitada</strong>
-                               <br><br><br>
-                               <strong><a class="btn btn-primary" href="index.php">Realizar nova pesquisa</a></strong>
-                            </h4>
-
-                          <?php  } ?>  
-
-					</div>
-				</div>
-			</section>
-		</div>
-	</body>
+                        <?php
+                            } /*fim foreach*/
+                        } else {
+                        ?>
+                        <h4 class="text-center">
+                            <strong> Não foram encontrados vôos para a pesquisa solicitada</strong>
+                            <br><br><br>
+                            <strong><a class="btn btn-primary" href="index.php">Realizar nova pesquisa</a></strong>
+                        </h4>
+                        <?php  } ?>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
 </html>
