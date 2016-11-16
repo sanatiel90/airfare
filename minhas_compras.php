@@ -111,7 +111,7 @@ if(!isset($_SESSION[md5("user")])){
                                   <td><?php echo $key["aeroporto_origem"]; ?></td>
                                   <td><?php echo $key["cidade_destino"]; ?> (<?php echo $key["estado_destino"]; ?>)</td>
                                   <td><?php echo $key["aeroporto_destino"]; ?></td>
-                                  <td><a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Emitir</a></td>
+                                  <td><a href="controller/emite_comprovante.php?id=<?php echo $key["id_pedido"]; ?>" target="_blank" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Emitir</a></td>
                                   
                                 </tr>
 

@@ -198,6 +198,43 @@ class Manager extends Connection{
 
 
 
+	public function dados_comprovante($id){
+
+		$pdo = parent::getCon();
+
+		try{
+
+			$stmt = $pdo->prepare("SELECT * FROM v_dados_pedido WHERE id_pedido = :id  LIMIT 1");
+
+			$stmt->bindValue(":id",$id);
+			
+
+			$stmt->execute();
+
+			$result = array();
+
+			if($stmt->rowCount()){
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result[] = $row;
+				}
+
+				return $result;
+			}else{
+
+				return false;
+			}
+
+
+
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+
+	}
+
+
+
+
 
 
 } //fim class
