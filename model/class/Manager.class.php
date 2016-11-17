@@ -105,6 +105,42 @@ class Manager extends Connection{
 
 
 
+	public function login_func($email,$password){
+
+		$pdo = parent::getCon();
+
+		try{
+
+			$stmt = $pdo->prepare("SELECT * FROM funcionarios WHERE email = :email AND senha = :password  LIMIT 1");
+
+			
+			$stmt->bindValue(":email",$email);
+			$stmt->bindValue(":password",$password);
+
+			$stmt->execute();
+
+			$result = array();
+
+			if($stmt->rowCount()){
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result[] = $row;
+					
+				}
+				return $result;
+			}else{
+				return false;
+			}
+
+		}catch(Exception $e){
+
+			echo $e->getMessage();
+		}
+
+
+	}
+
+
+
 
 	public function insert_cliente($nome,$cpf,$email,$telefone,$rg,$senha,$cartaocredito){
 
@@ -234,6 +270,98 @@ class Manager extends Connection{
 
 
 
+	public function update_cliente($id,$telefone){
+
+		$pdo = parent::getCon();
+
+			try{
+
+				$stmt = $pdo->prepare("UPDATE clientes SET telefone = :telefone WHERE id = :id");
+
+				$stmt->bindValue(":id",$id);
+				$stmt->bindValue(":telefone",$telefone);
+				
+
+				if($stmt->execute()){
+					return true;
+				}else{
+					return false;
+				}
+
+
+			}catch(Exception $e){
+				echo $e->getMessage();
+			}
+
+	}
+
+
+
+	public function lista_voos($filter,$order){
+
+			$pdo = parent::getCon();
+
+		try{
+
+			$stmt = $pdo->prepare("SELECT * FROM v_dados_voo $filter ORDER BY $order");
+				
+
+			$stmt->execute();
+
+			$result = array();
+
+			if($stmt->rowCount()){
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result[] = $row;
+				}
+
+				return $result;
+			}else{
+
+				return false;
+			}
+
+
+
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+
+	}
+
+
+
+
+	public function count_records($table){
+
+		$pdo = parent::getCon();
+
+		try{
+
+			$stmt = $pdo->prepare("SELECT COUNT(*) FROM $table");
+				
+		
+			$stmt->execute();
+
+			if($stmt->rowCount()){
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result = $row;
+				}
+
+				return $result;
+			}else{
+
+				return false;
+			}
+
+
+
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+
+
+	}
 
 
 

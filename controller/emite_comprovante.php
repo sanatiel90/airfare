@@ -60,7 +60,7 @@ if($dados_comprovante != null){
   foreach($dados_comprovante as $key){
 	$pdf->Cell(38,1,'Nome Comprador:',0,0,'C');
 	$pdf->SetFont('Times','',14);
-	$pdf->Cell(28,1,$key["nome_cli"],0,0,'C');
+	$pdf->Cell(30,1,$key["nome_cli"],0,0,'C');
 	$pdf->Ln(12);
   }
 

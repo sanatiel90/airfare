@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="navbar-header">
+					<div class="navbar-header navbar-right">
 						<p class="navbar-text"><?php include_once 'view/navbar.php'; ?></p>
 					</div>
 				</div>

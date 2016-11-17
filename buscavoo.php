@@ -28,12 +28,13 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="navbar-header">
+					<div class="navbar-header navbar-right">
                         <p class="navbar-text"><?php include_once 'view/navbar.php'; ?></p>
                     </div>
 				</div>
 			</header>
 			<section class="row">
+            
 				<div class="col-lg-3">
 					<div class="panel panel-success">
 						<div class="panel-heading">
@@ -45,6 +46,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 						</div>
 					</div>
 				</div>
+            
 				<div class="col-lg-9" >
 					<div class="panel panel-success" >
                         <!-- para as opcoes q nao tem pagina msm, como perfil, verifica se foi mandado algum OPTION pela url e adequa o nome do panel e titulo da pag -->
@@ -59,7 +61,7 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
 					<div class="panel-body">
                       <?php if($search_result != null){ 
                          foreach ($search_result as $key) { ?>
-                        <div style="background-color:white; height:250px;">
+                        <div style="background-color:white; height:210px;">
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:left"><strong>SAÍDA</strong></div>
                             <div class="text-center" style="height:25px; width:49.7%; background-color:#5F9EA0; float:right"><strong>DESTINO</strong></div>
                             <div style="background-color:#FFEBCD; height:25px; width:100%; float:left; color:#696969">
@@ -103,7 +105,11 @@ $search_result = $manager->busca_voo($_POST['cid_origem'], $_POST['cid_destino']
                                 <div class="text-center" style="float:left; width:12%;"><strong>R$ <?php echo $key['preco'] ?>,00</strong></div>
                                 <div class="text-center" style="float:left; width:16%;"><strong><a href="dados_voo.php?id=<?php echo $key['id'] ?>" class="btn btn-sm btn-primary">Comprar</a></div>
                             </div>
+                        
                         </div>
+                        <!-- divisoria -->
+                        <div class="col-lg-12" style="background-color:lightgreen; height:10px; border-radius:5px"></div> <br><br>
+
                          <?php }/*fim foreach*/   }else{  ?>
 
                             <h4 class="text-center">
