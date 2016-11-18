@@ -33,6 +33,7 @@ if(!isset($_SESSION[md5('func')])){
                          <li class="dropdown" style="background-color:#98FB98">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buscar <span class="caret"></span></a>
                            <ul class="dropdown-menu">
+                               <li><a href="busca_funcionarios.php">Funcionários</a></li>
                               <li><a href="#">Clientes</a></li>
                               <li><a href="listagem_voos.php">Vôos</a></li>
                               <li><a href="#">Pedidos</a></li>
@@ -44,6 +45,7 @@ if(!isset($_SESSION[md5('func')])){
                          <li class="dropdown" style="background-color:#98FB98">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
                            <ul class="dropdown-menu">
+                              <li><a href="#">Funcionários</a></li>
                               <li><a href="#">Clientes</a></li>
                               <li><a href="listagem_voos.php">Vôos</a></li>
                               <li><a href="#">Pedidos</a></li>
@@ -84,7 +86,7 @@ if(!isset($_SESSION[md5('func')])){
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Faça sua pesquisa por um vôo</strong>
+                                    <strong style="font-family:arial;">Página Inicial</strong>
                                 </span>
                             </h3>
                         </div>

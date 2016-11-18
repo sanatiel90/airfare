@@ -13,12 +13,22 @@ if(!isset($_SESSION[md5('func')])){
 
     $manager = new Manager();
 
-    $total_voos = $manager->count_records("voos");
-
-    $filter = "";
-    $order = "";
-  
     
+    $field = "";
+    $search = "";
+    $order = "";
+
+    if(!isset($_POST['field'])){
+
+        $field = "nome";
+
+    }else{
+      
+        $field = $_POST['field'];
+
+    }
+    
+
     if(!isset($_POST['order'])){
 
         $order = "id";
@@ -30,7 +40,20 @@ if(!isset($_SESSION[md5('func')])){
     }
 
 
-    $lista_voos = $manager->lista_voos($filter,$order);
+    if(!isset($_POST['search'])){
+
+        $field = "nome";
+        $search = "";
+        $order = "id";
+
+    }else{
+      
+        $search = $_POST['search'];
+
+    }
+
+
+    $search_result = $manager->busca_funcionario($field,$search,$order);
 
 
 }
@@ -97,18 +120,16 @@ if(!isset($_SESSION[md5('func')])){
                 </div>
             </header>   <!-- fim cabecalho -->
             <section class="row">
-
+              <div class="col-lg-1"></div> 
                 
-               
-                <div class="col-lg-12" >
-
-               
-
+              
+                <div class="col-lg-10" >
+              
                    <div class="panel panel-success" >
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Listagem de vôos</strong>
+                                    <strong style="font-family:arial;">Busca de Funcionários</strong>
                                 </span>
                             </h3>
                         </div>
@@ -117,27 +138,36 @@ if(!isset($_SESSION[md5('func')])){
 
                        <div class="col-lg-12" style="font-size:15px">    
                          <div class="col-lg-4 text-center">
-                            <label>Total de vôos encontrados: <?php foreach($total_voos as $key){echo $key;} ?></label>
+                           
                          </div>
 
                          <div class="col-lg-4 text-center">
-                             <form action="" method="POST" id="form">    
-                             <label>Ordenar por &nbsp; </label >
-                               <select id="order" name="order"  onchange="atualiza()" style="width:50%; border-radius:5px">
-                                   <option>Selecione --</option>
-                                   <option value="id">Id</option>
-                                   <option value="companhia">Companhia</option>
-                                   <option value="preco">Menor Preço</option>
-                                   <option value="preco DESC">Maior Preço</option>
-                                   <option value="data_voo DESC">Data Vôo</option>
-                                   <option value="vagas_disponiveis DESC">Vagas Disponíveis</option>
-                                </select> 
-                              </form>  
+                          <form action="" method="POST">
+                           <label>Pesquisar por:</label> <br> 
+                           <input type="radio" name="field" value="nome"> Nome &nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="field" value="email"> Email
+                           <br><br>
+                           <label>Ordernar resultado da pesquisa por:</label><br>
+                           <select style="border-radius:5px" name="order">
+                             <option value="null">Selecione --</option>
+                             <option value="id">Id</option>
+                             <option value="nome">Nome</option>
+                             <option value="salario DESC">Maior Salário</option>
+                             <option value="salario">Menor Salário</option>
+                             
+                           </select>
+                           <br><br>
+                           <div class="form-group">
+                           <input type="text" name="search" class="form-control" placeholder="Digite sua pesquisa">
+                           </div>
+                           <button class="btn btn-primary">Pesquisar</button>
+                           <br><br>
+                          </form> 
                          </div>
                          
                          <div class="col-lg-4 text-center">
                             
-                             <a class="btn btn-warning" href="../controller/relatorio_voos.php?filter=<?php echo base64_encode($filter); ?>&order=<?php echo base64_encode($order); ?>" target="_blank">Gerar Relatório</a>
+                             <a class="btn btn-warning" href="" target="_blank">Gerar Relatório</a>
                             
                          </div>
                                                  
@@ -148,62 +178,45 @@ if(!isset($_SESSION[md5('func')])){
                       <table class="table table-bordered table-hover text-center">
                          <tr class="info">
                              <th class="text-center">Id</th>
-                             <th class="text-center">Saída</th>
-                             <th class="text-center">Destino</th>
-                             <th class="text-center">Data Vôo</th>
-                             <th class="text-center">Companhia</th>
-                             <th class="text-center">Preço</th>
-                             <th class="text-center">Total Vagas</th>
-                             <th class="text-center">Vagas Disp.</th>
+                             <th class="text-center">Nome</th>
+                             <th class="text-center">E-mail</th>
+                             <th class="text-center">Telefone</th>
+                             <th class="text-center">Salário</th>
                              <th class="text-center">Ações</th>
                          </tr> 
 
-                        <?php if($lista_voos != null){ 
-                         foreach ($lista_voos as $key) { ?>
+                        <?php if($search_result != null){ 
+                         foreach ($search_result as $key) { ?>
 
                          <tr>
                              <td><?php echo $key["id"]; ?></td>
-                             <td><?php echo $key["aeroporto_origem"].' - '.$key["cidade_origem"].'('.$key["estado_origem"].')'; ?></td>
-                             <td><?php echo $key["aeroporto_destino"].' - '.$key["cidade_destino"].'('.$key["estado_destino"].')'; ?></td>
-                             <td><?php echo date("d/m/Y",strtotime($key["data_voo"])) ; ?></td>
-                             <td><?php echo $key["companhia"]; ?></td>
-                             <td><?php echo 'R$ '.$key["preco"]; ?></td>
-                             <td><?php echo $key["total_vagas"]; ?></td>
-                             <td><?php echo $key["vagas_disponiveis"]; ?></td>
+                             <td><?php echo $key["nome"]; ?></td>
+                             <td><?php echo $key["email"]; ?></td>
+                             <td><?php echo $key["telefone"]; ?></td>
+                             <td><?php echo 'R$ '.$key["salario"]; ?></td>
                              <td>
                              <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                              <a href="" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
                              </td>
                          </tr>
 
-                         <?php } }else{  ?>
-
-                          <h4 class="text-center">
-                               <strong> Não foram dados a serem mostrados</strong>
-                              <br><br>
-                              
-                            </h4>
-
-                          <?php  } ?>  
-
+                         <?php } }else{ ?>
+                          <br>
+                          <div style="color:red" class="text-center" >
+                                <strong>Não foram encontrados resultados para a pesquisa realizada</strong>
+                          </div>
+                          <br>
+                         <?php  } ?>
 
                       </table>
+
+
                     </div>
                 </div>
-              
+              <div class="col-lg-1"></div> 
             </section>
         </div>
     </body>
 </html>
 
 
-<script>
-    
-function atualiza(){
-
-   document.getElementById('form').submit();
-}
-
-
-
-</script>

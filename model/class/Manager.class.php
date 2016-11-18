@@ -37,6 +37,38 @@ class Manager extends Connection{
 
 
 
+	public function busca_funcionario($field,$search,$order){
+
+		$pdo = parent::getCon();
+
+		try {
+			$stmt = $pdo->prepare("SELECT * FROM funcionarios WHERE $field LIKE :search ORDER BY $order");
+			
+			$stmt->bindValue(":search", "%$search%");
+			
+			$stmt->execute();
+
+			$result = array();
+
+			if ($stmt->rowCount()) {
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					$result[] = $row;
+				}
+				return $result;
+
+			} else {
+				return false;
+			}
+
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+
+	}
+
+
+
+
 	public function voo_solicitado($id){
 		$pdo = parent::getCon();
 
