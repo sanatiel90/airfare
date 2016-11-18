@@ -4,7 +4,6 @@ class Connection{
     private static $con;
 
     public static function getCon () {
-
         if (!isset(self::$con)) {
             $host = "localhost";
             $user = "root";

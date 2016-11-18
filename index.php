@@ -20,20 +20,7 @@
 				</div>
 			</header>	<!-- fim cabecalho -->
 			<section class="row">
-
-                <!--
-                    SIDEBAR
-                <div class="col-lg-3"> 
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center"><strong>Menu</strong></h3>
-                        </div>
-                        <div class="panel-body"></div>
-                    </div>
-                   
-                </div>
-                --> 
-               <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
                 <div class="col-lg-4" >
 
                 <?php if(isset($_GET['logout'])){ ?>
@@ -83,7 +70,7 @@
                         </form>
                     </div>
                 </div>
-              <div class="col-lg-4"></div> 
+                <div class="col-lg-4"></div>
             </section>
 		</div>
 	</body>
