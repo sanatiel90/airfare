@@ -3,7 +3,8 @@
 <html>
 	<head>
 		<title>Página Inicial - Airfare</title>
-		<link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
 		<div class="container">
@@ -20,20 +21,7 @@
 				</div>
 			</header>	<!-- fim cabecalho -->
 			<section class="row">
-
-                <!--
-                    SIDEBAR
-                <div class="col-lg-3"> 
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center"><strong>Menu</strong></h3>
-                        </div>
-                        <div class="panel-body"></div>
-                    </div>
-                   
-                </div>
-                --> 
-               <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
                 <div class="col-lg-4" >
 
                 <?php if(isset($_GET['logout'])){ ?>
@@ -66,7 +54,7 @@
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Faça sua pesquisa por um vôo</strong>
+                                    <strong class="default-font">Faça sua pesquisa por um vôo</strong>
                                 </span>
                             </h3>
                         </div>
@@ -83,7 +71,7 @@
                         </form>
                     </div>
                 </div>
-              <div class="col-lg-4"></div> 
+                <div class="col-lg-4"></div>
             </section>
 		</div>
 	</body>
