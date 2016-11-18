@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>Login - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div class="container">
@@ -25,7 +26,7 @@
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Login</strong>
+                                    <strong class="default-font">Login</strong>
                                 </span>
                             </h3>
                         </div>

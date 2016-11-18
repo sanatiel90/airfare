@@ -26,7 +26,7 @@ if (!isset($_SESSION[md5('func')])) {
 <html>
     <head>
         <title>Página Inicial - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="../view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../view/assets/bootstrap/css/bootstrap.css">
         <script src="../view/assets/bootstrap/js/jquery.js"></script>
         <script src="../view/assets/bootstrap/js/bootstrap.js"></script>
     </head>

@@ -3,7 +3,8 @@
 <html>
 	<head>
 		<title>Página Inicial - Airfare</title>
-		<link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
 		<div class="container">
@@ -53,7 +54,7 @@
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Faça sua pesquisa por um vôo</strong>
+                                    <strong class="default-font">Faça sua pesquisa por um vôo</strong>
                                 </span>
                             </h3>
                         </div>

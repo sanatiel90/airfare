@@ -13,7 +13,7 @@ if (isset($_SESSION[md5("func")])) {
 <html>
     <head>
         <title>Área Restrita - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="../view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../view/assets/bootstrap/css/bootstrap.css">
     </head>
     <body>
         <div class="container">

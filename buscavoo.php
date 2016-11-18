@@ -13,7 +13,8 @@ if (isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST[
 <html>
     <head>
         <title>Pesquisa Vôo</title>
-        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div class="container">
@@ -25,7 +26,7 @@ if (isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST[
                 </div>
                 <div class="col-lg-4">
                     <div class="navbar-header navbar-right">
-                        <p class="navbar-text"><?php include_once 'view/navbar.php'; ?></p>
+                        <p class="navbar-text"><?php include_once('view/navbar.php'); ?></p>
                     </div>
                 </div>
             </header>
@@ -44,7 +45,7 @@ if (isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST[
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;"> Resultado da busca</strong>
+                                    <strong class="default-font"> Resultado da busca</strong>
                                 </span>
                             </h3>
                         </div>
@@ -101,8 +102,8 @@ if (isset($_POST['cid_origem']) && isset($_POST['cid_destino']) && isset($_POST[
                                 <!-- divisoria -->
                                 <div class="col-lg-12" style="background-color:lightgreen; height:10px; border-radius:5px"></div> <br><br>
 
-                            <?php }/*fim foreach*/   } else {  ?>
-
+                            <?php }/*fim foreach*/
+                        } else { ?>
                             <h4 class="text-center">
                                 <strong> Não foram encontrados vôos para a pesquisa solicitada</strong>
                                 <br><br><br>

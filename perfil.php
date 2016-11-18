@@ -11,7 +11,8 @@ if (!isset($_SESSION[md5("user")])) {
 <html>
     <head>
         <title>Página Inicial - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div class="container">
@@ -44,7 +45,7 @@ if (!isset($_SESSION[md5("user")])) {
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Perfil</strong>
+                                    <strong class="default-font">Perfil</strong>
                                 </span>
                             </h3>
                         </div>
@@ -55,19 +56,18 @@ if (!isset($_SESSION[md5("user")])) {
                         <form method="POST" action="controller/atualiza_cliente.php" >
                             <div class="col-lg-12">
                                 <div class="col-lg-6">
-                                    <label>Nome</label>
-                                    <input type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["nome_cli"];} ?>" /><br>
+                                    <label for="nome">Nome</label>
+                                    <input id="nome" type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["nome_cli"];} ?>" /><br>
 
-                                    <label>Telefone *</label>
-                                    <input type="text" name="new_tel" class="form-control" value="<?php foreach($user as $key){echo $key["telefone"];} ?>" /><br>
-
+                                    <label for="telefone">Telefone *</label>
+                                    <input id="telefone" type="text" name="new_tel" class="form-control" value="<?php foreach($user as $key){echo $key["telefone"];} ?>" /><br>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label>E-mail</label>
-                                    <input type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["email"];} ?>" /><br>
+                                    <label for="email">E-mail</label>
+                                    <input id="email" type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["email"];} ?>" /><br>
 
-                                    <label>Cartão Crédito</label>
-                                    <input type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["nome_cartao"];} ?>" /><br>
+                                    <label for="cartaocredito">Cartão Crédito</label>
+                                    <input id="cartaocredito" type="text" readonly class="form-control" value="<?php foreach($user as $key){echo $key["nome_cartao"];} ?>" /><br>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="col-lg-4"></div>

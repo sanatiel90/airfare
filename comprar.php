@@ -12,7 +12,8 @@ if (!isset($_SESSION[md5('user')])) {
 <html>
     <head>
         <title>Compra de Passagens - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
         <script src="view/assets/bootstrap/js/jquery.js"></script>
         <script src="view/assets/bootstrap/js/bootstrap.js"></script>
     </head>
@@ -37,7 +38,7 @@ if (!isset($_SESSION[md5('user')])) {
                         <div class="panel-heading" style="background-color:lightgreen;"><!-- para as opcoes q nao tem pagina msm, como perfil, verifica se foi mandado algum OPTION pela url e adequa o nome do panel e titulo da pag -->
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Comprar Passagem</strong>
+                                    <strong class="default-font">Comprar Passagem</strong>
                                 </span>
                             </h3>
                         </div>
@@ -106,7 +107,7 @@ if (!isset($_SESSION[md5('user')])) {
                             <br><br><br><br><br>
                             <div class="text-center" style="background-color:white; height:28px; font-size:16px">
                                 <div style="background-color:#B0E0E6; width:49%; float:left; height:28px; border-radius:5px">
-                                    <strong>Quantidade de Passagens</strong>
+                                    <label for="quantidade"><strong>Quantidade de Passagens</strong></label>
                                     <select id="quantidade" onchange="atualizaPreco()">
                                         <option value="1">1</option>
                                         <option value="2">2</option>

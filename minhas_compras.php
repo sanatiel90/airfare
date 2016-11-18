@@ -16,7 +16,8 @@ if (!isset($_SESSION[md5("user")])) {
 <html>
     <head>
         <title>Página Inicial - Airfare</title>
-        <link rel="stylesheet" type="text/css" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="view/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div class="container">
@@ -39,15 +40,15 @@ if (!isset($_SESSION[md5("user")])) {
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
                                 <span class="glyphicon glyphicon-th">
-                                    <strong style="font-family:arial;">Minhas Compras</strong>
+                                    <strong class="default-font">Minhas Compras</strong>
                                 </span>
                             </h3>
                         </div>
                     </div>
                     <div class="panel-body">
                         <h3 class="text-center">Histórico de Compras</h3>
-                        <?php  if($search_result != null){
-                            foreach($search_result as $key){ ?>
+                        <?php if ($search_result != null) {
+                            foreach ($search_result as $key) { ?>
                                 <div class="panel panel-success">
                                     <div class="panel-heading text-center">Compra realizada por <label><?php echo $key["nome_cli"]; ?></label> </div>
                                     <div class="panel-body">
