@@ -12,7 +12,7 @@ class Manager extends Connection{
                 "cidade_destino LIKE :destino AND " .
                 "data_voo = :data_voo"
             );
-<<<<<<< HEAD
+
 			$stmt->bindValue(":origem", "%$origem%");
 			$stmt->bindValue(":destino", "%$destino%");
 			$stmt->bindValue(":data_voo", "$data");
@@ -138,95 +138,6 @@ class Manager extends Connection{
 
 
 
-	public function login_func($email,$password){
-
-		$pdo = parent::getCon();
-
-		try{
-
-			$stmt = $pdo->prepare("SELECT * FROM funcionarios WHERE email = :email AND senha = :password  LIMIT 1");
-
-			
-			$stmt->bindValue(":email",$email);
-			$stmt->bindValue(":password",$password);
-
-			$stmt->execute();
-
-			$result = array();
-
-			if($stmt->rowCount()){
-				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-					$result[] = $row;
-=======
-            $stmt->bindValue(":origem", "%$origem%");
-            $stmt->bindValue(":destino", "%$destino%");
-            $stmt->bindValue(":data_voo", "$data");
-            $stmt->execute();
-            $result = array();
-
-            if ($stmt->rowCount()) {
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $result[] = $row;
-                }
-                return $result;
-            } else {
-                return false;
-            }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }
-    }
-
-    public function voo_solicitado($id){
-        $pdo = parent::getCon();
-
-        try{
-            $stmt = $pdo->prepare("SELECT * FROM v_dados_voo WHERE id = :id LIMIT 1");
-            $stmt->bindValue(":id",$id);
-            $stmt->execute();
-            $result = array();
-
-            if($stmt->rowCount()){
-                while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                    $result[] = $row;
-                }
-                return $result;
-            }else{
-                return false;
-            }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }
-    }
-    public function login_cliente($email,$password){
-        $pdo = parent::getCon();
-
-        try{
-
-            $stmt = $pdo->prepare("SELECT * FROM v_dados_cliente WHERE email = :email AND senha = :password  LIMIT 1");
-            $stmt->bindValue(":email",$email);
-            $stmt->bindValue(":password",$password);
-
-            $stmt->execute();
-
-            $result = array();
-
-            if ($stmt->rowCount()) {
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $result[] = $row;
->>>>>>> 21d839f764f31c4d7e74a46bd5a2aa3509e9e657
-					
-                }
-                return $result;
-            }else{
-                return false;
-            }
-
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
-
-    }
 
     public function login_func($email,$password) {
         $pdo = parent::getCon();
@@ -252,6 +163,9 @@ class Manager extends Connection{
         }
     }
 
+
+
+
     public function insert_cliente($nome, $cpf, $email, $telefone, $rg, $senha, $cartaocredito) {
         $pdo = parent::getCon();
 
@@ -273,6 +187,9 @@ class Manager extends Connection{
         }
     }
 
+
+
+
     public function insert_pedido($quantidade,$preco,$cod_voo,$cod_cli){
         $pdo = parent::getCon();
 
@@ -292,6 +209,8 @@ class Manager extends Connection{
             echo $e->getMessage();
         }
     }
+
+    
 
     public function lista_compras_cliente($id){
         $pdo = parent::getCon();
@@ -315,6 +234,8 @@ class Manager extends Connection{
             echo $e->getMessage();
         }
     }
+
+
 
     public function dados_comprovante($id) {
         $pdo = parent::getCon();
@@ -340,6 +261,8 @@ class Manager extends Connection{
         }
     }
 
+
+
     public function update_cliente($id,$telefone)
     {
         $pdo = parent::getCon();
@@ -359,6 +282,8 @@ class Manager extends Connection{
             echo $e->getMessage();
         }
     }
+
+
 
     public function lista_voos($filter,$order){
         $pdo = parent::getCon();
@@ -382,6 +307,8 @@ class Manager extends Connection{
         }
     }
 
+
+
     public function count_records($table){
         $pdo = parent::getCon();
 
@@ -401,4 +328,5 @@ class Manager extends Connection{
             echo $e->getMessage();
         }
     }
+
 } //fim class

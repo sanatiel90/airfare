@@ -28,31 +28,25 @@ if (!isset($_SESSION[md5('func')])) {
                     <ul class="nav navbar-nav navbar-default">
                         <li class="dropdown" style="background-color:#98FB98">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buscar <span class="caret"></span></a>
-<<<<<<< HEAD
+
                            <ul class="dropdown-menu">
                                <li><a href="busca_funcionarios.php">Funcionários</a></li>
                               <li><a href="#">Clientes</a></li>
                               <li><a href="listagem_voos.php">Vôos</a></li>
                               <li><a href="#">Pedidos</a></li>
                               
-                              
-=======
-                           
->>>>>>> 21d839f764f31c4d7e74a46bd5a2aa3509e9e657
+                             
                             </ul>
                         </li>
                         <li class="dropdown" style="background-color:#98FB98">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
-<<<<<<< HEAD
+
                            <ul class="dropdown-menu">
                               <li><a href="#">Funcionários</a></li>
                               <li><a href="#">Clientes</a></li>
                               <li><a href="listagem_voos.php">Vôos</a></li>
                               <li><a href="#">Pedidos</a></li>
                               
-=======
-                          
->>>>>>> 21d839f764f31c4d7e74a46bd5a2aa3509e9e657
                             </ul>
                         </li>
                         <li class="dropdown" style="background-color:#98FB98">
