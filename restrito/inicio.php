@@ -53,8 +53,7 @@ if (!isset($_SESSION[md5('func')])) {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../controller/logout_func.php">Sair do Sistema</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                
                             </ul>
                         </li>
                     </ul>

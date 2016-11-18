@@ -104,8 +104,7 @@ if(!isset($_SESSION[md5('func')])){
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                            <ul class="dropdown-menu">
                               <li><a href="../controller/logout_func.php">Sair do Sistema</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">Separated link</a></li>
+                              
                             </ul>
                           </li>
 
@@ -124,7 +123,8 @@ if(!isset($_SESSION[md5('func')])){
                 
               
                 <div class="col-lg-10" >
-              
+
+                                
                    <div class="panel panel-success" >
                         <div class="panel-heading" style="background-color:lightgreen;">
                             <h3 class="panel-title text-center">
@@ -135,6 +135,38 @@ if(!isset($_SESSION[md5('func')])){
                         </div>
                     </div>
                     <div class="panel-body">
+
+                    <?php if(isset($_GET['func_edited'])){ ?>
+
+                    <div class="alert alert-success text-center" >
+                         <strong>Dados do funcionário atualizados com sucesso</strong>
+                    </div>
+
+                    <?php } ?>
+
+                    <?php if(isset($_GET['edit_error'])){ ?>
+
+                    <div class="alert alert-danger text-center" >
+                         <strong>Erro ao atualizar dados. Alterações não feitas.</strong>
+                    </div>
+
+                    <?php } ?>
+
+                    <?php if(isset($_GET['func_deleted'])){ ?>
+
+                    <div class="alert alert-success text-center" >
+                         <strong>Funcionário deletado do sistema</strong>
+                    </div>
+
+                    <?php } ?>
+
+                    <?php if(isset($_GET['delete_error'])){ ?>
+
+                    <div class="alert alert-danger text-center" >
+                         <strong>Erro ao deletar. Funcionário não removido.</strong>
+                    </div>
+
+                    <?php } ?>
 
                        <div class="col-lg-12" style="font-size:15px">    
                          <div class="col-lg-4 text-center">
@@ -167,7 +199,7 @@ if(!isset($_SESSION[md5('func')])){
                          
                          <div class="col-lg-4 text-center">
                             
-                             <a class="btn btn-warning" href="" target="_blank">Gerar Relatório</a>
+                           <!--  <a class="btn btn-warning" href="" target="_blank">Gerar Relatório</a> -->
                             
                          </div>
                                                  
@@ -195,8 +227,9 @@ if(!isset($_SESSION[md5('func')])){
                              <td><?php echo $key["telefone"]; ?></td>
                              <td><?php echo 'R$ '.$key["salario"]; ?></td>
                              <td>
-                             <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-                             <a href="" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                             <a href="edita_funcionario.php?id=<?php echo $key["id"]; ?>" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                             <button type="button" value="<?php echo $key["id"]; ?>" class="btexclui btn btn-danger btn-xs" data-toggle="modal" data-target="#exclui"><span class="glyphicon glyphicon-remove" ></span></button>
+                            
                              </td>
                          </tr>
 
@@ -219,4 +252,43 @@ if(!isset($_SESSION[md5('func')])){
     </body>
 </html>
 
+<script>
 
+ $(".btexclui").on('click',function(){
+      
+      var $id = $(this).val();
+      $("#confdelete").val($id);
+   });
+  
+</script>
+
+
+<!-- DIV PARA MODAL EXCLUSAO-->
+<div class="modal fade text-center" id="exclui">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3 class="modal-title" > Atenção! Este processo irá apagar permanentemente os dados do funcionário </h4>
+        <hr>
+        <h4 class="modal-title" > Confirma a exclusão do funcionário? </h4>
+      </div>  
+
+      <div class="modal-body text-center">
+        
+           <form action="../controller/delete_funcionario.php" method="POST">
+          
+          <button type="button" class="btn btn-default" data-dismiss="modal"> Cancelar </button>
+        
+                
+          <input type="hidden" value="" id="confdelete" name="id"/>
+
+          <button  class="btn btn-danger"> Confirmar</button>
+          </form> 
+        
+      </div>
+
+    
+    </div> <!-- content -->
+  </div> <!-- dialog -->
+</div> <!-- modal fade-->

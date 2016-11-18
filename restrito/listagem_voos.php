@@ -65,8 +65,7 @@ if (!isset($_SESSION[md5('func')])) {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../controller/logout_func.php">Sair do Sistema</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                
                             </ul>
                         </li>
                     </ul>
@@ -123,7 +122,7 @@ if (!isset($_SESSION[md5('func')])) {
                                 <th class="text-center">Preço</th>
                                 <th class="text-center">Total Vagas</th>
                                 <th class="text-center">Vagas Disp.</th>
-                                <th class="text-center">Ações</th>
+                                
                             </tr>
                             <?php if (isset($lista_voos)) {
                                 foreach ($lista_voos as $key) { ?>
@@ -136,10 +135,7 @@ if (!isset($_SESSION[md5('func')])) {
                                         <td><?php echo 'R$ '.$key["preco"]; ?></td>
                                         <td><?php echo $key["total_vagas"]; ?></td>
                                         <td><?php echo $key["vagas_disponiveis"]; ?></td>
-                                        <td>
-                                            <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            <a href="" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
-                                        </td>
+                                        
                                     </tr>
                                 <?php } } ?>
                         </table>

@@ -37,7 +37,7 @@ class Manager extends Connection{
 	}
 
 
-
+    //buscar funcionarios com base em filtros de busca
 	public function busca_funcionario($field,$search,$order){
 
 		$pdo = parent::getCon();
@@ -66,6 +66,39 @@ class Manager extends Connection{
 		}
 
 	}
+
+
+
+     //buscar 1 funcionario com base no id
+    public function find_funcionario($id){
+
+        $pdo = parent::getCon();
+
+        try {
+            $stmt = $pdo->prepare("SELECT * FROM funcionarios WHERE id = :id  LIMIT 1");
+            
+            $stmt->bindValue(":id", $id);
+            
+            $stmt->execute();
+
+            $result = array();
+
+            if ($stmt->rowCount()) {
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    $result[] = $row;
+                }
+                return $result;
+
+            } else {
+                return false;
+            }
+
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+
+    }
+
 
 
 
@@ -210,7 +243,7 @@ class Manager extends Connection{
         }
     }
 
-    
+
 
     public function lista_compras_cliente($id){
         $pdo = parent::getCon();
@@ -281,6 +314,57 @@ class Manager extends Connection{
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+
+        public function update_funcionario($id,$new_email,$new_tel,$new_sal){
+        
+        $pdo = parent::getCon();
+
+        try {
+
+          
+
+            $stmt = $pdo->prepare("UPDATE funcionarios SET email = :email, telefone = :tel, salario = :sal  WHERE id = :id");
+            $stmt->bindValue(":id", $id);
+            $stmt->bindValue(":email", $new_email);
+            $stmt->bindValue(":tel", $new_tel);
+            $stmt->bindValue(":sal", $new_sal);
+
+
+
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
+    public function delete_funcionario($id){
+
+         $pdo = parent::getCon();
+
+        try {
+         
+
+            $stmt = $pdo->prepare("DELETE FROM funcionarios WHERE id = :id");
+            $stmt->bindValue(":id", $id);
+           
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+
     }
 
 
